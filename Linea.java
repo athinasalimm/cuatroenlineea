@@ -1,7 +1,9 @@
 package cuatroEnLinea;
 
 import java.util.ArrayList;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Linea {
 	public static String NoSePuedeAgregarOtraFicha = "No se puede agregar otra ficha, se llego al limite"; //TERMINA EL JUEGO
@@ -38,16 +40,8 @@ public class Linea {
 		this.turno = turno;
 	}
 
-	public boolean turnoRojo() {
-		return getTurno().turnogetter() == "rojo";
-	}
-
-	public boolean turnoNegro() {
-		return getTurno().turnogetter() == "azul";
-	}
-	
-	private Estado getTurno() {
-		return turno;
+	public String getTurno() {
+		return turno.turnogetter();
 	}
 	public String getGanador() {
 		return ganador;
@@ -136,14 +130,34 @@ public class Linea {
 			}
 		}
 	}
+	
+	public boolean canWinVertically() { 
+		return ((listaDeColumnas.stream().anyMatch(column -> containsFourConsecutiveForVerticalWin(column, "XXXX")) || listaDeColumnas.stream().anyMatch(column -> containsFourConsecutiveForVerticalWin(column, "YYYY"))));
+	}
+	
+	private boolean containsFourConsecutiveForVerticalWin(List<String> column, String toFind) {
+		String newColumn = String.join("", column);
+		return newColumn.contains(toFind);
+	}
+	
+	public boolean canWinHorizontally() { //todo el tiempo se esta llamando esta funcion
+		return ((containsFourConsecutiveForHorizontalWin("XXXX") || containsFourConsecutiveForHorizontalWin("YYYY")));
+	}
+	
+	public static boolean containsFourConsecutiveForHorizontalWin(String toFind) {
+	    for(int i = 0; i < listaDeColumnas.size(); i ++) {
+	        List<String> column = listaDeColumnas.get(i);
+	        String row = column.get(i);
+	        return row.contains(toFind);
+	    }
+		return false; 
+	    }
+	
+
+
 
 
 }
 	
-	
-	
-	
-	//que dibujo(x,y) ?? no entendi, seria como un metodo pero se hace mas difivil chupar el y.
-	//lo q hay q hacer es juntar moverfichitaazul y moverfichitaroja
-	
+
 
