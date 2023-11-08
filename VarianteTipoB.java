@@ -12,21 +12,11 @@ public class VarianteTipoB extends VarianteTriunfo{
 	}
 
 	@Override
-	public boolean canWinVertically(Linea linea) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean executeVariante(Linea linea) {
+		return false ; //aca seria el can win diagonal
 	}
 
-	@Override
-	public boolean canWinHorizontally(Linea linea) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean canWinDiagonally(Linea linea) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }
+
