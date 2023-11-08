@@ -25,6 +25,11 @@ public class VarianteTipoA extends VarianteTriunfo{
 		return ((linea.listaDeColumnas.stream().anyMatch(column -> containsFourConsecutiveX(column)) || linea.listaDeColumnas.stream().anyMatch(column -> containsFourConsecutiveY(column))));
 	}
 	
+	private boolean containsFourConsecutiveForVerticalWin(List<String> column, String toFind) {
+		String newColumn = String.join("", column);
+		return newColumn.contains(toFind);
+	}
+	/*
 	private boolean containsFourConsecutiveX(List<String> column) {
 		String newColumn = String.join("", column);
 		return newColumn.contains("XXXX");
@@ -33,21 +38,32 @@ public class VarianteTipoA extends VarianteTriunfo{
 	private boolean containsFourConsecutiveY(List<String> column) {
 		String newColumn = String.join("", column);
 		return newColumn.contains("YYYY");
+	}	*/
+	
+	public boolean canWin(Linea linea) {
+		return ((canWinVertically(linea) || canWinHorizontally(linea)));
 	}
 	
 	public boolean canWinHorizontally(Linea linea) { //todo el tiempo se esta llamando esta funcion
-		return (containsFourConsecutiveXX(linea) || containsFourConsecutiveYY(linea));
+		return ((containsFourConsecutiveForHorizontalWin(linea, "X") || containsFourConsecutiveForHorizontalWin(linea, "Y")));
 	}
 	
+	public static boolean containsFourConsecutiveForHorizontalWin(Linea linea, String toFind) {
+	    for(int i = 0; i < linea.listaDeColumnas.size(); i ++) {
+	        List<String> column = linea.listaDeColumnas.get(i);
+	        String row = column.get(i);
+	        return row.contains(toFind);
+	    }
+		return false; 
+	    }
+	/*
 	public static boolean containsFourConsecutiveXX(Linea linea) {
 	    for(int i = 0; i < linea.listaDeColumnas.size(); i ++) {
 	        List<String> column = linea.listaDeColumnas.get(i);
 	        String row = column.get(i);
 	        return row.contains("XXXX");
 	    }
-		return false;
-	    
-	    
+		return false; 
 	    }
 	    
 		
@@ -59,8 +75,8 @@ public class VarianteTipoA extends VarianteTriunfo{
 		    }
 			return false;
 		}
-
-		@Override
+*/
+	
 		public boolean canWinDiagonally(Linea linea) {
 			return false;
 		}
