@@ -14,23 +14,10 @@ public class VarianteTipoC extends VarianteTriunfo{
 
 
 	@Override
-	public boolean canWinVertically(Linea linea) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean executeVariante(Linea linea) {
+		return (linea.canWinHorizontally() || linea.canWinVertically()); //aca tb iria diagonal
 	}
 
-
-	@Override
-	public boolean canWinHorizontally(Linea linea) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	@Override
-	public boolean canWinDiagonally(Linea linea) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }
+
