@@ -7,7 +7,11 @@ public class Ganador extends Estado{
 	}
 
 	public void gameIsOver(Linea linea) {
-		//aca ver segun variantes puestas?? me imagino q aca comunicamos con variantes que comunican a linea
+		
+		//aca hay q meterse a q variante es y ejecutarla
+		//falta la estructura q separa el char y se lo manda a ejecutarVariante
+		//linea.getVariante().ejecutarVariante();
+		VarianteTriunfo.ejecutarVariante(linea.getVariante(), linea); //crep igual q esta mal llamarla asi
 	}
 			
 	@Override
@@ -26,3 +30,4 @@ public class Ganador extends Estado{
 	protected void moveBlue(int columnaElegida) {}
 
 }
+
